@@ -1,0 +1,20 @@
+date,amount,type,description
+2024-11-01,50000,income,Salary
+2024-11-02,15000,expense,House Rent
+2024-11-05,3200,expense,Groceries
+2024-11-12,1800,expense,Electricity Bill
+2024-11-18,2500,expense,Internet Bill
+2024-11-22,4000,expense,Shopping
+2024-12-01,50000,income,Salary
+2024-12-02,15000,expense,House Rent
+2024-12-06,3500,expense,Groceries
+2024-12-13,1900,expense,Electricity Bill
+2024-12-19,2500,expense,Internet Bill
+2024-12-24,6000,expense,Shopping
+2025-01-01,50000,income,Salary
+2025-01-02,15000,expense,House Rent
+2025-01-07,3000,expense,Groceries
+2025-01-14,2000,expense,Electricity Bill
+2025-01-20,2500,expense,Internet Bill
+2025-01-26,4500,expense,Shopping
+
