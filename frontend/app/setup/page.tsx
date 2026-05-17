@@ -366,14 +366,14 @@ export default function SetupPage() {
                   </p>
 
                   <div className="mt-6 space-y-4">
-                    <div className="rounded-2xl border border-black/10 bg-(--surface-1) p-1">
+                    <div className="rounded-2xl border border-(--surface-3) bg-(--surface-2) p-1">
                       <div className="grid grid-cols-2 gap-1">
                         <button
                           type="button"
                           className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                             balanceInputMode === "manual"
                               ? "bg-(--brand-1) text-white"
-                              : "text-(--ink-2)"
+                              : "text-(--ink-1)"
                           }`}
                           onClick={() => {
                             setBalanceInputMode("manual");
@@ -386,7 +386,7 @@ export default function SetupPage() {
                           className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                             balanceInputMode === "sandbox"
                               ? "bg-(--brand-1) text-white"
-                              : "text-(--ink-2)"
+                              : "text-(--ink-1)"
                           }`}
                           onClick={() => {
                             setBalanceInputMode("sandbox");
@@ -398,7 +398,7 @@ export default function SetupPage() {
                     </div>
 
                     {balanceInputMode === "sandbox" && (
-                      <div className="rounded-2xl border border-black/10 bg-(--surface-1) p-4">
+                      <div className="rounded-2xl border border-(--surface-3) bg-(--surface-2) p-4">
                         <div>
                           <div>
                             <p className="text-sm font-medium text-(--ink-1)">
@@ -411,8 +411,7 @@ export default function SetupPage() {
                           <div className="mt-4 grid gap-3 md:grid-cols-2">
                             <label className="text-sm text-(--ink-1)">
                               Bank name
-                              <input
-                                type="text"
+                              <select
                                 value={verificationInput.bank_name}
                                 onChange={(event) => {
                                   const value = event.target.value;
@@ -423,8 +422,13 @@ export default function SetupPage() {
                                   setIsSandboxVerified(false);
                                   setSandboxSessionToken(null);
                                 }}
-                                className="mt-2 w-full rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--ink-2)"
-                              />
+                                className="mt-2 w-full rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1)"
+                              >
+                                <option value="KOTAK MAHINDRA BANK">KOTAK MAHINDRA BANK</option>
+                                <option value="BANK OF BARODA">BANK OF BARODA</option>
+                                <option value="HDFC BANK">HDFC BANK</option>
+                                <option value="STATE BANK OF INDIA">STATE BANK OF INDIA</option>
+                              </select>
                             </label>
                             <label className="text-sm text-(--ink-1)">
                               Account number or last 4 digits
@@ -440,7 +444,7 @@ export default function SetupPage() {
                                   setIsSandboxVerified(false);
                                   setSandboxSessionToken(null);
                                 }}
-                                className="mt-2 w-full rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--ink-2)"
+                                className="mt-2 w-full rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--muted)"
                                 placeholder="e.g., 3401 or full account"
                               />
                             </label>
@@ -450,7 +454,7 @@ export default function SetupPage() {
                                 type="text"
                                 value={verificationInput.phone_number}
                                 onChange={(event) => {
-                                  const value = event.target.value.replace(/\D/g, "").slice(0, 10);
+                                  const value = event.target.value.replace(/\D/g, "");
                                   setVerificationInput((prev) => ({
                                     ...prev,
                                     phone_number: value,
@@ -458,8 +462,8 @@ export default function SetupPage() {
                                   setIsSandboxVerified(false);
                                   setSandboxSessionToken(null);
                                 }}
-                                className="mt-2 w-full rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--ink-2)"
-                                placeholder="10-digit mobile"
+                                className="mt-2 w-full rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--muted)"
+                                placeholder="Enter mobile number"
                               />
                             </label>
                             <label className="text-sm text-(--ink-1)">
@@ -468,7 +472,7 @@ export default function SetupPage() {
                                 type="password"
                                 value={verificationInput.mpin}
                                 onChange={(event) => {
-                                  const value = event.target.value.replace(/\D/g, "").slice(0, 6);
+                                  const value = event.target.value.replace(/\D/g, "").slice(0, 4);
                                   setVerificationInput((prev) => ({
                                     ...prev,
                                     mpin: value,
@@ -476,8 +480,8 @@ export default function SetupPage() {
                                   setIsSandboxVerified(false);
                                   setSandboxSessionToken(null);
                                 }}
-                                className="mt-2 w-full rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--ink-2)"
-                                placeholder="Enter mPIN"
+                                className="mt-2 w-full rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--muted)"
+                                placeholder="Enter mPIN (4 digits)"
                               />
                             </label>
                           </div>
@@ -491,8 +495,8 @@ export default function SetupPage() {
                                 isVerifyingBank ||
                                 verificationInput.bank_name.trim().length < 3 ||
                                 verificationInput.account_number_or_last4.trim().length < 4 ||
-                                verificationInput.phone_number.trim().length !== 10 ||
-                                verificationInput.mpin.trim().length < 4
+                                verificationInput.phone_number.trim().length === 0 ||
+                                verificationInput.mpin.trim().length !== 4
                               }
                             >
                               {isVerifyingBank ? "Verifying..." : "Verify details"}
@@ -514,7 +518,7 @@ export default function SetupPage() {
                         </div>
 
                         {sandboxBalance && (
-                          <div className="mt-4 rounded-xl border border-black/10 bg-(--surface-2) p-3 text-sm text-(--ink-1)">
+                          <div className="mt-4 rounded-xl border border-(--surface-3) bg-(--surface-3) p-3 text-sm text-(--ink-1)">
                             <p>
                               {sandboxBalance.bank_name} ({sandboxBalance.account_mask})
                             </p>
@@ -590,23 +594,23 @@ export default function SetupPage() {
                     {incomes.fields.map((field, index) => (
                       <div
                         key={field.id}
-                        className="grid gap-4 rounded-2xl border border-black/10 bg-(--surface-1) p-4 lg:grid-cols-4"
+                        className="grid gap-4 rounded-2xl border border-(--surface-3) bg-(--surface-2) p-4 lg:grid-cols-4"
                       >
                         <input
                           placeholder="Name"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`incomes.${index}.name` as const)}
                         />
                         <input
                           type="number"
                           placeholder="Amount"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`incomes.${index}.amount` as const, {
                             valueAsNumber: true,
                           })}
                         />
                         <select
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1)"
                           {...register(`incomes.${index}.timing` as const)}
                         >
                           <option value="monthly">Monthly</option>
@@ -615,7 +619,7 @@ export default function SetupPage() {
                         </select>
                         <div className="flex items-center gap-2">
                           <select
-                            className="w-full rounded-xl border border-black/10 px-3 py-2 text-(--ink-1)"
+                            className="w-full rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1)"
                             {...register(`incomes.${index}.nature` as const)}
                           >
                             <option value="fixed">Fixed</option>
@@ -664,23 +668,23 @@ export default function SetupPage() {
                     {expenses.fields.map((field, index) => (
                       <div
                         key={field.id}
-                        className="grid gap-4 rounded-2xl border border-black/10 bg-(--surface-1) p-4 lg:grid-cols-5"
+                        className="grid gap-4 rounded-2xl border border-(--surface-3) bg-(--surface-2) p-4 lg:grid-cols-5"
                       >
                         <input
                           placeholder="Name"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`expenses.${index}.name` as const)}
                         />
                         <input
                           type="number"
                           placeholder="Amount"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`expenses.${index}.amount` as const, {
                             valueAsNumber: true,
                           })}
                         />
                         <select
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1)"
                           {...register(`expenses.${index}.timing` as const)}
                         >
                           <option value="monthly">Monthly</option>
@@ -688,7 +692,7 @@ export default function SetupPage() {
                           <option value="biweekly">Biweekly</option>
                         </select>
                         <select
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1)"
                           {...register(`expenses.${index}.nature` as const)}
                         >
                           <option value="fixed">Fixed</option>
@@ -744,17 +748,17 @@ export default function SetupPage() {
                     {events.fields.map((field, index) => (
                       <div
                         key={field.id}
-                        className="grid gap-4 rounded-2xl border border-black/10 bg-(--surface-1) p-4 lg:grid-cols-4"
+                        className="grid gap-4 rounded-2xl border border-(--surface-3) bg-(--surface-2) p-4 lg:grid-cols-4"
                       >
                         <input
                           placeholder="Name"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`upcoming_events.${index}.name` as const)}
                         />
                         <input
                           type="number"
                           placeholder="Day"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`upcoming_events.${index}.day` as const, {
                             valueAsNumber: true,
                           })}
@@ -762,7 +766,7 @@ export default function SetupPage() {
                         <input
                           type="number"
                           placeholder="Amount"
-                          className="rounded-xl border border-black/10 px-3 py-2 text-(--ink-1) placeholder:text-(--ink-2)"
+                          className="rounded-xl border border-(--surface-3) bg-(--surface-1) px-3 py-2 text-(--ink-1) placeholder:text-(--muted)"
                           {...register(`upcoming_events.${index}.amount` as const, {
                             valueAsNumber: true,
                           })}
@@ -790,14 +794,14 @@ export default function SetupPage() {
                   <div className="mt-6 grid gap-4 md:grid-cols-2">
                     <label className="text-sm text-(--ink-1)">
                       Autonomy enabled
-                      <div className="mt-2 rounded-2xl border border-black/10 bg-(--surface-1) p-1">
+                      <div className="mt-2 rounded-2xl border border-(--surface-3) bg-(--surface-2) p-1">
                         <div className="grid grid-cols-2 gap-1">
                           <button
                             type="button"
                             className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                               autonomyEnabled
                                 ? "bg-(--brand-1) text-white"
-                                : "text-(--ink-2)"
+                                : "text-(--ink-1)"
                             }`}
                             onClick={() =>
                               setValue("autonomy_enabled", true, { shouldDirty: true })
@@ -810,7 +814,7 @@ export default function SetupPage() {
                             className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                               !autonomyEnabled
                                 ? "bg-(--brand-1) text-white"
-                                : "text-(--ink-2)"
+                                : "text-(--ink-1)"
                             }`}
                             onClick={() =>
                               setValue("autonomy_enabled", false, { shouldDirty: true })
@@ -823,7 +827,7 @@ export default function SetupPage() {
                     </label>
                     <div className="text-sm text-(--ink-1)">
                       User type
-                      <div className="mt-2 rounded-2xl border border-black/10 bg-(--surface-2) px-4 py-3 text-sm font-semibold capitalize text-(--ink-1)">
+                      <div className="mt-2 rounded-2xl border border-(--surface-3) bg-(--surface-2) px-4 py-3 text-sm font-semibold capitalize text-(--ink-1)">
                         {user?.user_type || "professional"}
                       </div>
                       <p className="mt-2 text-xs text-(--ink-2)">
@@ -847,10 +851,10 @@ export default function SetupPage() {
                     </label>
                   </div>
 
-                  <div className="mt-6 rounded-2xl border border-black/10 bg-(--surface-1) p-4">
+                  <div className="mt-6 rounded-2xl border border-(--surface-3) bg-(--surface-2) p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">Run preview</p>
                     <div className="mt-3 grid gap-3 text-xs lg:grid-cols-2">
-                      <div className="rounded-xl border border-black/10 bg-(--surface-2) p-3">
+                      <div className="rounded-xl border border-(--surface-3) bg-(--surface-3) p-3">
                         <p className="text-(--muted)">Balance snapshot</p>
                         <p className="mt-1 text-(--ink-1)">
                           Current: {formatCurrency(Number(formValues.current_balance || 0))}
@@ -860,13 +864,13 @@ export default function SetupPage() {
                         </p>
                       </div>
 
-                      <div className="rounded-xl border border-black/10 bg-(--surface-2) p-3">
+                      <div className="rounded-xl border border-(--surface-3) bg-(--surface-3) p-3">
                         <p className="text-(--muted)">Cashflow totals</p>
                         <p className="mt-1 text-(--ink-1)">Income: {formatCurrency(totalIncome)}</p>
                         <p className="text-(--ink-1)">Expenses: {formatCurrency(totalExpenses)}</p>
                       </div>
 
-                      <div className="rounded-xl border border-black/10 bg-(--surface-2) p-3">
+                      <div className="rounded-xl border border-(--surface-3) bg-(--surface-3) p-3">
                         <p className="text-(--muted)">Events overview</p>
                         <p className="mt-1 text-(--ink-1)">Events: {(formValues.upcoming_events || []).length}</p>
                         <p className="text-(--ink-1)">Total impact: {formatCurrency(totalUpcomingEvents)}</p>
@@ -876,7 +880,7 @@ export default function SetupPage() {
                         </p>
                       </div>
 
-                      <div className="rounded-xl border border-black/10 bg-(--surface-2) p-3">
+                      <div className="rounded-xl border border-(--surface-3) bg-(--surface-3) p-3">
                         <p className="text-(--muted)">Policy & profile</p>
                         <p className="mt-1 capitalize text-(--ink-1)">User type: {user?.user_type || "professional"}</p>
                         <p className="text-(--ink-1)">

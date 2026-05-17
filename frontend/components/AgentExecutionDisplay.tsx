@@ -70,7 +70,7 @@ function renderContent(agentKey: string, output: any) {
       return <ExplanationCard data={output} agentKey={agentKey} />;
     default:
       return (
-        <pre className="whitespace-pre-wrap wrap-break-word rounded-2xl bg-black/30 p-3 text-xs text-(--ink-2)">
+        <pre className="whitespace-pre-wrap wrap-break-word rounded-2xl bg-(--surface-3) p-3 text-xs text-(--ink-1)">
           {JSON.stringify(output, null, 2)}
         </pre>
       );
@@ -130,7 +130,7 @@ export default function AgentExecutionDisplay({
               </button>
               <button
                 onClick={() => setCurrentStep(activeAgents.length)}
-                className="rounded-xl border border-white/10 px-4 py-2 text-sm text-(--ink-1)"
+                className="rounded-xl border border-(--surface-3) bg-(--surface-2) px-4 py-2 text-sm text-(--ink-1) hover:bg-(--surface-3)"
               >
                 Show all
               </button>
@@ -157,19 +157,19 @@ export default function AgentExecutionDisplay({
                     isActive
                       ? "border-(--brand-1) bg-(--surface-2) shadow-[0_0_0_1px_var(--brand-1)]"
                       : isComplete
-                      ? "border-white/10 bg-(--surface-2)"
-                      : "border-white/5 opacity-45"
+                      ? "border-(--surface-3) bg-(--surface-2)"
+                      : "border-(--surface-3) opacity-40 bg-transparent"
                   }`}
                 >
                   <div className="flex items-center gap-2">
                     <div>
                       <h3 className="font-semibold text-(--ink-1)">{agent.label}</h3>
-                      {isActive && <p className="text-xs text-cyan-300">{agent.runningLabel}</p>}
-                      {isComplete && !isActive && <p className="text-xs text-emerald-300">Completed</p>}
+                      {isActive && <p className="text-xs font-medium text-(--brand-3)">{agent.runningLabel}</p>}
+                      {isComplete && !isActive && <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Completed</p>}
                     </div>
                   </div>
 
-                  {isComplete && <div className="mt-3 rounded-xl bg-black/20 p-3">{renderContent(agent.key, output)}</div>}
+                  {isComplete && <div className="mt-3 rounded-xl bg-(--surface-3)/50 p-3">{renderContent(agent.key, output)}</div>}
                 </div>
               );
             })}

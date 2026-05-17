@@ -12,20 +12,20 @@ export default function ExecutionCard({ data }: AgentCardProps) {
   return (
     <div className="space-y-3 text-sm text-(--ink-2)">
       <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">Investment Execution Output</p>
-      <div className="rounded-xl bg-black/20 p-3 text-xs">
+      <div className="rounded-xl bg-(--surface-3) p-3 text-xs">
         <p className="text-(--muted)">Executed</p>
-        <p className={data.executed ? "mt-1 font-semibold text-emerald-300" : "mt-1 font-semibold text-rose-300"}>
+        <p className={data.executed ? "mt-1 font-semibold text-emerald-600 dark:text-emerald-400" : "mt-1 font-semibold text-rose-600 dark:text-rose-400"}>
           {data.executed ? "True" : "False"}
         </p>
       </div>
 
-      <div className="rounded-xl bg-black/20 p-3">
+      <div className="rounded-xl bg-(--surface-3) p-3">
         <p className="text-xs text-(--muted)">Total funds executed</p>
         <p className="mt-1 text-lg font-semibold text-(--ink-1)">{formatCurrency(total)}</p>
       </div>
 
       {(typeof data.allocation_source === "string" || typeof data.reason === "string") && (
-        <div className="rounded-xl bg-black/20 p-3 text-xs">
+        <div className="rounded-xl bg-(--surface-3) p-3 text-xs">
           {typeof data.allocation_source === "string" && (
             <p className="text-(--muted)">Allocation source: <span className="text-(--ink-1)">{data.allocation_source}</span></p>
           )}
@@ -35,7 +35,7 @@ export default function ExecutionCard({ data }: AgentCardProps) {
         </div>
       )}
 
-      <div className="space-y-2 rounded-xl bg-black/20 p-3">
+      <div className="space-y-2 rounded-xl bg-(--surface-3) p-3">
         <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">Allocation Breakdown</p>
         {Object.entries(allocations).map(([asset, amount]) => {
           const numeric = Number(amount || 0);
@@ -47,8 +47,8 @@ export default function ExecutionCard({ data }: AgentCardProps) {
                 <span className="capitalize text-(--ink-1)">{asset.replaceAll("_", " ")}</span>
                 <span>{formatCurrency(numeric)} {typeof percentage === "number" ? `(${percentage}%)` : ""}</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full rounded-full bg-cyan-400/80 transition-all duration-700" style={{ width: `${width}%` }} />
+              <div className="h-2 overflow-hidden rounded-full bg-(--surface-2)">
+                <div className="h-full rounded-full bg-(--brand-3) transition-all duration-700" style={{ width: `${width}%` }} />
               </div>
             </div>
           );
@@ -56,7 +56,7 @@ export default function ExecutionCard({ data }: AgentCardProps) {
       </div>
 
       {projection && (
-        <div className="rounded-xl bg-black/20 p-3 text-xs">
+        <div className="rounded-xl bg-(--surface-3) p-3 text-xs">
           <p className="font-semibold text-(--ink-1)">Long-term projection</p>
           <p className="mt-1 text-(--muted)">Final value: {formatCurrency(Number(projection.final_value || 0))}</p>
           <p className="text-(--muted)">Annualized return: {typeof projection.annualized_return === "number" ? `${(projection.annualized_return * 100).toFixed(2)}%` : "-"}</p>

@@ -102,12 +102,12 @@ export default function RunsPage() {
               <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 <input
                   placeholder="Search by run id or strategy"
-                  className="rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--muted) outline-none focus:border-(--brand-1)"
+                  className="rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1) placeholder:text-(--muted) outline-none focus:border-(--brand-1)"
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                 />
                 <select
-                  className="rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) outline-none focus:border-(--brand-1)"
+                  className="rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1) outline-none focus:border-(--brand-1)"
                   value={filterRisk}
                   onChange={(event) => setFilterRisk(event.target.value)}
                 >
@@ -117,7 +117,7 @@ export default function RunsPage() {
                   <option value="HIGH">High</option>
                 </select>
                 <select
-                  className="rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-(--ink-1) outline-none focus:border-(--brand-1)"
+                  className="rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-(--ink-1) outline-none focus:border-(--brand-1)"
                   value={filterStrategy}
                   onChange={(event) => setFilterStrategy(event.target.value)}
                 >
@@ -159,7 +159,7 @@ export default function RunsPage() {
                     <button
                       key={run.run_id}
                       onClick={() => router.push(`/replay/${encodeURIComponent(run.run_id)}`)}
-                      className="flex w-full flex-col items-start justify-between gap-3 rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-4 text-left hover:bg-(--surface-2) sm:flex-row sm:items-center"
+                      className="flex w-full flex-col items-start justify-between gap-3 rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-4 text-left hover:bg-(--surface-2) sm:flex-row sm:items-center"
                     >
                       <div className="space-y-1">
                         <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">

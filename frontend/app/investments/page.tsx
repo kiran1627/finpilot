@@ -142,7 +142,7 @@ export default function InvestmentsPage() {
                             router.push(`/investments/${encodeURIComponent(runId)}`);
                           }}
                           disabled={!runIdsByHoldingIndex[index]}
-                          className="flex w-full flex-col items-start justify-between gap-3 rounded-2xl border border-black/10 bg-(--surface-1) px-4 py-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-(--surface-2) disabled:cursor-default disabled:hover:translate-y-0 disabled:hover:bg-(--surface-1) sm:flex-row sm:items-center"
+                          className="flex w-full flex-col items-start justify-between gap-3 rounded-2xl border border-(--surface-3) bg-(--surface-1) px-4 py-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-(--surface-2) disabled:cursor-default disabled:hover:translate-y-0 disabled:hover:bg-(--surface-1) sm:flex-row sm:items-center"
                         >
                           <div>
                             <p className="font-semibold text-(--ink-1)">

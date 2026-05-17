@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTheme } from "@/context/ThemeContext";
+import { Sun, Moon } from "lucide-react";
 
 export default function Home() {
+  const { theme, toggleTheme } = useTheme();
   useEffect(() => {
     // Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
@@ -57,6 +60,17 @@ export default function Home() {
           </div>
         </a>
         <div className="landing-actions">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+            className="theme-toggle-btn"
+            title={theme === "light" ? "Dark mode" : "Light mode"}
+          >
+            <span className="theme-icon-wrap">
+              {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+            </span>
+          </button>
           <a href="/auth" className="landing-button ghost">
             Sign In
           </a>
@@ -333,10 +347,10 @@ export default function Home() {
 
                   <div className="timeline-step-content">
                     <div className="timeline-step-head">
-                      <p className="text-white font-semibold text-base">{step.title}</p>
+                      <p className="font-semibold text-base text-(--landing-ink)">{step.title}</p>
                       <span className="timeline-step-output">{step.output}</span>
                     </div>
-                    <p className="text-white/60 text-sm leading-relaxed mt-2 max-w-sm">
+                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-(--landing-muted)">
                       {step.description}
                     </p>
                   </div>

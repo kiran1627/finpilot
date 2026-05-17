@@ -62,8 +62,8 @@ export default function ExplanationCard({ data, agentKey }: AgentCardProps) {
   if (isAdvisor) {
     return (
       <div className="space-y-3 text-sm text-(--ink-2)">
-        <div className="rounded-xl border border-indigo-400/30 bg-indigo-500/10 p-3">
-          <p className="text-xs uppercase tracking-[0.2em] text-indigo-300">{narrative.badge}</p>
+        <div className="rounded-xl border border-(--brand-1)/30 bg-(--brand-1)/10 p-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-(--brand-1)">{narrative.badge}</p>
           {typeof data.source === "string" && (
             <p className="mt-1 text-xs text-(--muted)">Source: {data.source}</p>
           )}
@@ -87,10 +87,10 @@ export default function ExplanationCard({ data, agentKey }: AgentCardProps) {
               const funds = Array.isArray(exampleFunds[asset]) ? exampleFunds[asset] : [];
 
               return (
-                <div key={asset} className="rounded-xl bg-black/20 p-3 text-xs">
+                <div key={asset} className="rounded-xl bg-(--surface-3) p-3 text-xs">
                   <div className="flex items-center justify-between gap-3">
                     <p className="font-semibold text-(--ink-1)">{labelize(asset)}</p>
-                    <p className="text-cyan-300">{typeof pct === "number" ? `${pct}%` : "-"}</p>
+                    <p className="text-(--brand-3)">{typeof pct === "number" ? `${pct}%` : "-"}</p>
                   </div>
                   <p className="mt-1 text-(--muted)">Category: {typeof category === "string" ? category : "-"}</p>
                   <p className="mt-1 text-(--muted)">
@@ -109,8 +109,8 @@ export default function ExplanationCard({ data, agentKey }: AgentCardProps) {
 
   return (
     <div className="space-y-3 text-sm text-(--ink-2)">
-      <div className="rounded-xl border border-indigo-400/30 bg-indigo-500/10 p-3">
-        <p className="text-xs uppercase tracking-[0.2em] text-indigo-300">{narrative.badge}</p>
+      <div className="rounded-xl border border-(--brand-1)/30 bg-(--brand-1)/10 p-3">
+        <p className="text-xs uppercase tracking-[0.2em] text-(--brand-1)">{narrative.badge}</p>
         {typeof narrative.summary === "string" && narrative.summary.trim().length > 0 ? (
           <p className="mt-1 text-(--ink-1)">{narrative.summary}</p>
         ) : (
@@ -137,7 +137,7 @@ export default function ExplanationCard({ data, agentKey }: AgentCardProps) {
         </ul>
       )}
 
-      {data.confidence && <p className="text-xs text-emerald-300">Confidence: {data.confidence}</p>}
+      {data.confidence && <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Confidence: {data.confidence}</p>}
     </div>
   );
 }

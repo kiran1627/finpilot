@@ -51,12 +51,12 @@ export default function LogsPage() {
               <div className="grid gap-4 lg:grid-cols-2">
                 <input
                   placeholder="Filter by run id"
-                  className="rounded-2xl border border-white/10 bg-(--surface-2) px-4 py-3 text-(--ink-1) placeholder:text-(--muted)"
+                  className="rounded-2xl border border-(--surface-3) bg-(--surface-2) px-4 py-3 text-(--ink-1) placeholder:text-(--muted)"
                   value={runId}
                   onChange={(event) => setRunId(event.target.value)}
                 />
                 <select
-                  className="rounded-2xl border border-white/10 bg-(--surface-2) px-4 py-3 text-(--ink-1)"
+                  className="rounded-2xl border border-(--surface-3) bg-(--surface-2) px-4 py-3 text-(--ink-1)"
                   value={entryType}
                   onChange={(event) => setEntryType(event.target.value)}
                 >
@@ -77,7 +77,7 @@ export default function LogsPage() {
                   {filtered.map((entry: any, index: number) => (
                     <div
                       key={entry.id || index}
-                      className="rounded-2xl border border-white/10 bg-(--surface-2) p-4"
+                      className="rounded-2xl border border-(--surface-3) bg-(--surface-2) p-4"
                     >
                       <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
                         <div>
@@ -92,7 +92,7 @@ export default function LogsPage() {
                           {entry.run_id || "-"}
                         </p>
                       </div>
-                      <pre className="mt-3 overflow-x-auto whitespace-pre-wrap wrap-break-word rounded-2xl bg-black/30 p-3 text-xs text-(--ink-2)">
+                      <pre className="mt-3 overflow-x-auto whitespace-pre-wrap wrap-break-word rounded-2xl bg-(--surface-3) p-3 text-xs text-(--ink-1)">
 {typeof entry.payload === "string"
   ? JSON.stringify(JSON.parse(entry.payload), null, 2)
   : JSON.stringify(entry.payload, null, 2)}

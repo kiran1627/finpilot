@@ -158,7 +158,7 @@ export default function DashboardPage() {
                   {runs.slice(0, 6).map((run: any) => (
                     <button
                       key={run.run_id}
-                      className="rounded-2xl border border-black/10 bg-(--surface-1) p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-(--surface-2)"
+                      className="rounded-2xl border border-(--surface-3) bg-(--surface-1) p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:bg-(--surface-2)"
                       onClick={() => router.push(`/replay/${run.run_id}`)}
                     >
                       <div className="flex items-center justify-between">

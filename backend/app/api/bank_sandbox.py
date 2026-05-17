@@ -11,8 +11,8 @@ router = APIRouter()
 class SandboxVerifyRequest(BaseModel):
     bank_name: str = Field(min_length=3)
     account_number_or_last4: str = Field(min_length=4, max_length=18)
-    phone_number: str = Field(min_length=10, max_length=10)
-    mpin: str = Field(min_length=4, max_length=6)
+    phone_number: str = Field(min_length=1, max_length=15)
+    mpin: str = Field(min_length=4, max_length=4)
 
 
 @router.post("/api/bank/sandbox-verify")
