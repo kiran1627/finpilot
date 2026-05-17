@@ -10,6 +10,10 @@ import os
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./ledger.db")
 
+# SQLAlchemy 1.4+ requires "postgresql://" instead of "postgres://"
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 # --------------------------------------------------
 # Engine Configuration
 # --------------------------------------------------
